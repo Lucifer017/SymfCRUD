@@ -26,7 +26,7 @@ class Text
      */
     private $body;
 
-    //Getters and Setters
+    //Getters and Setters {}
     public function getId(){
       return $this->id;
     }
