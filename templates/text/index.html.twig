@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Symfony CRUD{% endblock %}
+
+{% block body %}
+  {% if texts %}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Text Title</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for text in texts %}
+        <tr>
+          <td>{{ text }}</td>
+          <td>
+            <a href="/article/1" class="btn btn-dark">Show</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No text to display</p>
+  {% endif %}
+{% endblock %}
