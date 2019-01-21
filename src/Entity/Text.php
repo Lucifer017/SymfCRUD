@@ -22,7 +22,7 @@ class Text
     private $title;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text")()
      */
     private $body;
 
