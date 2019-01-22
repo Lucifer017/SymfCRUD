@@ -36,7 +36,7 @@ class Text
     }
 
     public function setTitle($title){
-      return $this->title = $title;
+      $this->title = $title;
     }
 
     public function getBody(){
@@ -44,7 +44,7 @@ class Text
     }
 
     public function setBody($body){
-      return $this->body = $body;
+      $this->body = $body;
     }
 
 
