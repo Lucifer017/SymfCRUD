@@ -47,12 +47,24 @@
       ))
       ->getForm();
 
+      $form->handleRequest($request);
+
+      if($form->isSubmitted() && $form->isValid()){
+        $text = $form->getData();
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($text);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('text_list');
+      }
+
       return $this->render('text/new.html.twig', array(
         'form' => $form->createView()
       ));
 
     }
-    
+
     /**
       * @Route("/text/{id}", name="text_show")
       *
