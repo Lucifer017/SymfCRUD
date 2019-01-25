@@ -66,6 +66,43 @@
     }
 
     /**
+      * @Route("/text/edit/{id}", name="edit_text")
+      * Method({"GET", "POST"})
+      */
+    public function edit(Request $request, $id){
+      $text = new Text();
+      $text = $this->getDoctrine()->getRepository(Text::class)->find($id);
+
+      $form = $this->createFormBuilder($text)
+      ->add('title', TextType::class, array('attr' =>
+      array('class' => 'form-control')))
+      ->add('body', TextareaType::class, array(
+        'required' => false,
+        'attr' => array('class' => 'form-control')
+      ))
+      ->add('save', SubmitType::class, array(
+        'label' => 'Update',
+        'attr' => array('class' => 'btn btn-primary mt-3')
+      ))
+      ->getForm();
+
+      $form->handleRequest($request);
+
+      if($form->isSubmitted() && $form->isValid()){
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->flush();
+
+        return $this->redirectToRoute('text_list');
+      }
+
+      return $this->render('text/edit.html.twig', array(
+        'form' => $form->createView()
+      ));
+
+    }
+
+    /**
       * @Route("/text/{id}", name="text_show")
       *
       */
