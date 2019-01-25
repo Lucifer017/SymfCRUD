@@ -4,7 +4,7 @@
 
 {% block body %}
   {% if texts %}
-    <table class="table table-striped">
+    <table id="texts" class="table table-striped">
       <thead>
         <tr>
           <th>Text Title</th>
@@ -17,6 +17,7 @@
           <td>{{ text.title }}</td>
           <td>
             <a href="/text/{{text.id}}" class="btn btn-dark">Show</a>
+            <a href="#" class="btn btn-danger delete-article" data-id="{{ text.id }}">Delete</a>
           </td>
         </tr>
         {% endfor %}
@@ -25,4 +26,8 @@
   {% else %}
     <p>No text to display</p>
   {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+  <script src="/js/main.js"></script>
 {% endblock %}

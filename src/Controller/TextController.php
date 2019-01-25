@@ -76,6 +76,21 @@
     }
 
     /**
+      * @Route("/text/delete/{id}")
+      * @Method({"DELETE"})
+      */
+    public function delete(Request $request, $id){
+      $text = $this->getDoctrine()->getRepository(Text::class)->find($id);
+
+      $entityManager = $this->getDoctrine()->getManager();
+      $entityManager->remove($text);
+      $entityManager->flush();
+
+      $response = new Response();
+      $response->send();
+    }
+
+    /**
       * @Route("/text/save")
       *
       */
